@@ -12,10 +12,24 @@ def home(req):
     data['account']=Account.objects.all()
     # {'user':User.objects.filter(username=req.user).values().first()}
     data['post']=User.objects.all()
+    data['new_post']=Post.objects.all()
     return render(req,"index.html",data)
+
 @login_required(redirect_field_name="login")
 def profile(req):
-    return render(req,"profile.html",{'user':User.objects.filter(username=req.user).values().first()})
+    return render(req,"profile.html",{'user':User.objects.filter(username=req.user).values().first(),'acc':Account.objects.filter(user=req.user),'new_post':Post.objects.all()})
+
+@login_required(redirect_field_name="login")
+def profile_pick(req):
+    if req.method == "POST":
+        P=Post()
+        P.post_by=User.objects.get(username=req.user)
+        P.image=req.FILES.get('image')
+        P.caption=req.POST.get("caption")
+        P.save()
+        return redirect(home)
+        
+       
 
 def loginUser(req):
     if req.method == "POST":
@@ -38,7 +52,7 @@ def register(req):
         S.first_name = req.POST.get("fname")
         S.last_name=req.POST.get("lname")
         S.email = req.POST.get("email")
-        S.password = req.POST.get("password")
+        S.set_password(req.POST.get('password'))
         S.username = req.POST.get("username")
         S.is_active = True
         S.is_staff = True

@@ -10,6 +10,7 @@ urlpatterns = [
     path("login/",loginUser,name="login"),
     path("register/",register,name="register"),
     path("logout/",logoutUser,name="logout"),
-    path("profile/",profile,name="profile")
-]
-urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    path("profile/",profile,name="profile"),
+    path("change_profile",profile_pick,name="changeProfile")
+    
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -15,8 +15,10 @@ class Account(models.Model):
     image=models.ImageField(upload_to="photo/",null=True,blank=True)
     def __str__(self):
         return self.user.username
+    
 class Post(models.Model):
     post_by=models.ForeignKey(User,on_delete=models.CASCADE)
+    image=models.ImageField(upload_to="photo/",null=True,blank=True)
     caption= models.TextField()
     date_of_creation=models.DateTimeField(auto_now_add=True)
     def __str__(self):
