@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FaceMark</title>
-    <link href="img/favicon.ico" rel="icon" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap"
@@ -34,7 +33,12 @@
     <div class="container-flex justify-between">
       <div class="container">
         <div class="row">
-          <div class="col-3">{% include 'side.html' %}</div>
+          <div class="col-3">
+            <div class="card  text-center text-secondary mt-2" style="background-color: #065778;">
+              <div class="card-body border p-0 m-1 border-dark self-center " style="text-shadow:2.3px 2.3px #17a2b8;font-size: 40px; font-family: Handlee, cursive;">Facemask
+              </div>
+          </div> 
+            {% include 'side.html' %}</div>
           <div class="col-9 px-5 my-4">
             <div class="container rounded">
               <div class="row">
@@ -101,7 +105,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#hello</span>
+                  <span class="text-light">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -110,7 +114,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#hello</span>
+                  <span class="text-light">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -119,7 +123,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#hello</span>
+                  <span class="text-light">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -128,7 +132,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#hello</span>
+                  <span class="text-light">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -137,7 +141,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#hello</span>
+                  <span class="text-light">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -146,7 +150,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#hello</span>
+                  <span class="text-light">#jaan leva</span>
                 </div>
               </div>
               <hr class="text-light mb-0" />
@@ -170,7 +174,7 @@
               </div>
               <hr class="text-light m-0" />
               <div class="row">
-                {%for ac in acc%}
+                {%for ac in new_post%}
                 <div class="col mx-auto">
                   <a href="">
                     <img
@@ -178,7 +182,7 @@
                       height="280px"
                       style="width: 270px !important"
                       class="p-1"
-                      alt=""
+                      alt="" 
                     />
                   </a>
                 </div>

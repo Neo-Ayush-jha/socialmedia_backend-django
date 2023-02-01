@@ -52,7 +52,8 @@
                                             <input type="file" class="form-control" name="image">
                                         </div>
                                         <div class="mb-3">
-                                            <input type="text" name="caption" placeholder="Caption" class="form-control">
+                                            <input type="text" name="caption" placeholder="Caption"
+                                                class="form-control">
                                         </div>
                                         <div class="mb-3">
                                             <input type="submit" value="Change Profile Picture" class="btn btn-primary">
@@ -62,6 +63,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col-6  px-4 mx-auto my-4 right">
                     <div class="row">
@@ -74,26 +76,49 @@
                                                 height="50px" alt="asd"
                                                 class="border border-secondary  border-3 rounded-circle ">
                                         </div>
-                                        <div class="col-10 ms-2">
-                                            <span><textarea type="text" class="form-control border border-0"
-                                                    placeholder="Whats in your Mind?"></textarea></span>
+                                        <div class="col-10">
+                                            <form action="" method="post">
+                                                <textarea name="caption" id="" cols="3" rows="5"
+                                                    class="form-control ms-3"
+                                                    placeholder="{{user.first_name}} whats in your Mind?"></textarea>
+                                                <div class="mt-2">
+                                                    <button type="button" class="btn "
+                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;"><i
+                                                            class="bi text-danger bi-image"></i>Photo</button>
+                                                    <button type="button" class="btn "
+                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;"><i
+                                                            class="bi bi-camera-reels-fill text-primary"></i>
+                                                        Video</button>
+                                                    <button type="button" class="btn "
+                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;"><i
+                                                            class="bi bi-calendar-event-fill text-danger"></i>
+                                                        Event</button>
+                                                    <button type="button" class="btn  me-2"
+                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;"><i
+                                                            class="bi bi-emoji-smile-fill text-warning"></i> Feeling
+                                                        /Activity</button>
+                                                    <input type="submit" value="post"
+                                                        class="btn btn-success text-dark ms-4"
+                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;">
+                                                </div>
+                                            </form>
+                                            <!-- <span><textarea type="text" class="form-control border border-0"
+                                                    placeholder="Whats in your Mind?"></textarea></span> -->
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4"></div>
-                                <div class="col-8 ps-5">
-                                    <a href="" class="btn  py-2 mx-2"
-                                        style="background-color: #b0b5b6;font-family: Handlee, cursive;">Change Profile
-                                        Picture</a><span><a href="" class="btn text-light py-2 mx-0"
-                                            style="background-color: #17a2b8;font-family: Handlee, cursive;">Send
-                                            Post</a></span>
-                                </div>
+
                             </div>
 
                             <div class="row mt-3 px-0">
+                                {% comment %}
+                                ---------------------------------------------------------POST---------------------------------------------------------
+                                {% endcomment %}
                                 <div class="col-10 mx-0" style="width: 100%;">
                                     {%for acc in  new_post%}
                                     <div class="card mt-5 p-0 " style="width: 100%;background-color: black;color:#fff">
+                                        {% comment %}---------------------------------------------------------header
+                                        part--------------------------------------------------------- {% endcomment %}
                                         <div class="card-header text-start text-light "
                                             style="width: 100%;background-color: black;">
                                             <!-- <div class="col-2 mx-0 px-0 text-center" > -->
@@ -101,7 +126,7 @@
                                                 <p></p>
                                                 <div class="col-10">
                                                     <span class="text-light text-small mx-0 px-0"><img
-                                                            src="http://127.0.0.1:8000/media/photo/1639916450.jpg"
+                                                            src="https://toppng.com/uploads/preview/anonymous-freetoedit-anonymous-hacker-mask-11562984731flvabwesfh.png"
                                                             height="33px" alt="asd"
                                                             class="border  ms-0 me-1 border-2 rounded-circle"
                                                             style="padding:1px;border-color:#25a3b7">
@@ -111,10 +136,10 @@
                                                 <div class="col-2"><i class="bi bi-three-dots fs-3 mx-3"></i></div>
                                             </div>
                                         </div>
-                                        <!------------------------------------ POST---------------------------------------------- -->
+                                        <!--------------------------------------------------------------------- photo work--------------------------------------------------------------------------- -->
                                         <div class="card-body m-0 p-0">
-                                            <img src="{{acc.image.url}}"
-                                                height="500px" class="card-img-top border-0" alt="...">
+                                            <img src="{{acc.image.url}}" height="500px" class="card-img-top border-0"
+                                                alt="...">
                                         </div>
                                         <div class="card-footer  text-start">
                                             <svg aria-label="Unlike" class="_ab6- me-3 text-light" color="#ed4956"
@@ -155,14 +180,15 @@
                                                     stroke-width="2"></polygon>
                                             </svg>
                                         </div>
-                                        <p class="card-text fs-5 mt-2"
+                                        <p class="card-text fs-5 mt-0 mt-2"
+                                            style="width:78%;margin-left:2%;background-color: black;color:#fff ;font-family: Handlee, cursive;">
+                                            <strong>{{acc.post_by.username}}</strong>
+                                            {{acc.caption}}</p>
+                                        <p class="card-text fs-5 mb-2"
                                             style="width:78%;margin-left:2%;background-color: black;color:#fff;font-family: Handlee, cursive;">
                                             Like by <strong>neo_ayush_jha</strong> and
                                             <strong>others</strong>
                                         </p>
-                                        <p class="card-text fs-5 mt-0 mb-3"
-                                            style="width:78%;margin-left:2%;background-color: black;color:#fff ;font-family: Handlee, cursive;">
-                                            {{acc.caption}}</p>
                                     </div>
                                     {%endfor%}
                                 </div>
@@ -180,16 +206,59 @@
                                     <img src="https://toppng.com/uploads/preview/anonymous-freetoedit-anonymous-hacker-mask-11562984731flvabwesfh.png"
                                         height="50px" alt="asd"
                                         class="border  border-dark me-1 border-3 rounded-circle " style="padding:1px;">
-                                    <strong style="font-family: Handlee, cursive;">{{acc.username}}</strong>
-                                    <a href="" class="fw-bold "
-                                        style="text-decoration: none;color: #446c73;font-family: Handlee, cursive;text-align: right;margin:left;">Follow</a>
+                                    <span style="font-family: Handlee, cursive;">{{acc.username}}</span>
                                 </span>
+
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <a href="{%url 'send_friend_request' acc.id%}" class="fw-bold "
+                                        style="text-decoration: none;color: #446c73;font-family: Handlee, cursive;"><i
+                                            class="bi bi-plus-circle-fill fs-3 "></i></a>
+                                </button>
                             </div>
                         </div>
                     </a>
+
+
+
                     {%endfor%}
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Friend</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row g-0 bg-body-secondary position-relative">
+                                        <div class="col-md-4 mb-md-0 p-md-4">
+                                            <img src="https://toppng.com/uploads/preview/anonymous-freetoedit-anonymous-hacker-mask-11562984731flvabwesfh.png"
+                                                class="w-100" alt="...">
+                                        </div>
+                                        <div class="col-md-8 p-4 ps-md-0">
+                                            <h5 class="mt-0">{{user.username}}</h5>
+                                            <p>Another instance of placeholder content for this other custom component.
+                                                It is intended to mimic what some real-world content would look like,
+                                                and we're using it here to give the component a bit of body and size.
+                                            </p>
+                                            <a href="{%url 'send_friend_request' user.id%}"
+                                                class="stretched-link btn btn-success">Send friend request</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 </body>
+
 </html>

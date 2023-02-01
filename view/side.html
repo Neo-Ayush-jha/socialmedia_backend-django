@@ -1,24 +1,74 @@
-<div class="card  text-center text-secondary mt-2" style="background-color: #065778;">
-    <div class="card-body border p-0 m-1 border-dark self-center " style="text-shadow:2.3px 2.3px #17a2b8;font-size: 40px; font-family: Handlee, cursive;">Facemask
-    </div>
-</div>
 <div class="list-group mt-2 ">
-    <a href="{%url 'home'%}" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
-            class="bi bi-house-door me-4 fs-3"></i>Home</a>
-    <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i class="bi bi-search me-4 fs-3"></i>Search</a>
-    <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i class="bi bi-arrows-fullscreen me-4 fs-3"></i>Explore</a>
-    <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
-            class="bi bi-calendar3-range me-4 fs-3"></i>Reels</a>
-    <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
-            class="bi bi-chat-text me-4 fs-3"></i>Message</a>
-    <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
-            class="bi bi-heart me-4 fs-3"></i>Notification</a>
-    <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
-            class="bi bi-plus-square me-4 fs-3"></i>Create</a>
-    <a href="" class="list-group-item   text-light fs-5 bg-dark" style="background-color: #065778;"><i
-            class="bi bi-person-circle me-4 fs-3"></i>Profile</a>
+        <a href="{%url 'home'%}" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
+                        class="bi bi-house-door me-4 fs-3"></i>Home</a>
+        <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
+                        class="bi bi-search me-4 fs-3"></i>Search</a>
+        <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
+                        class="bi bi-arrows-fullscreen me-4 fs-3"></i>Explore</a>
+        <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
+                        class="bi bi-calendar3-range me-4 fs-3"></i>Reels</a>
+        <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
+                        class="bi bi-chat-text me-4 fs-3"></i>Message</a>
+        <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
+                        class="bi bi-heart me-4 fs-3"></i>Notification</a>
+        <a href="" class="list-group-item   text-light fs-5 bg-dark" style="background-color: #065778;"><i
+                        class="bi bi-person-circle me-4 fs-3"></i>Profile</a>
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <a href="#" class="list-group-item   text-light fs-5" style="background-color: #065778;"><i
+                                class="bi bi-plus-square me-5 fs-3"></i>Friend request</a>
+        </button>
 </div>
 <div class="list-group">
-    <a href="#" class="list-group-item    text-light fs-4 mt-5 border-none" style="background-color: #065778;"><i
-            class="bi bi-list me-4 "></i>More</a>
+        <a href="#" class="list-group-item    text-light fs-4 mt-5 border-none" style="background-color: #065778;"><i
+                        class="bi bi-list me-4 "></i>More</a>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add Friend {{to.from_user.username}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                                <div class="row g-0 bg-body-secondary position-relative">
+                                        <div class="row">
+                                                <div class="col-6">
+                                                        <div class="card">
+                                                                <h2 class="fs-4 text-danger text-center">Sent Friend Requests</h2>
+                                                                <div class="card-body">
+                                                                        <ol class="list-group list-group-numbered">
+                                                                                {% for friend_request in sent_friend_requests %}
+                                                                                <li class="list-group-item fs-4">{{ friend_request.to_user }}</li>
+                                                                                {% endfor %}
+                                                                        </ol>
+                                                                </div>
+                
+                                                        </div>
+                                                </div>
+                                                <div class="col">
+                                                        <div class="card">
+                                                                <h2 class="fs-4 text-success text-center border border-2">Received Friend Requests</h2>
+                                                                
+                                                                <div class="card-body">
+                                                                        <ol class="list-group list-group-numbered">
+                                                                                {% for friend_request in received_friend_requests %}
+                                                                                <li class="list-group-item fs-4">{{ friend_request.from_user.first_name }} {{ friend_request.from_user.last_name }}</li>
+                                                                                {% endfor %}
+                                                                        </ol>
+                                                                </div>
+                
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        
+                                        
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                </div>
+        </div>
 </div>

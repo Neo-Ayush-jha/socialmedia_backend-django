@@ -6,20 +6,49 @@ from django.contrib.auth.decorators import login_required
 def singup(req):
     return render(req,'singup.html')
 
-@login_required(redirect_field_name="login")
+@login_required()
 def home(req):
     data={}
     data['account']=Account.objects.all()
     # {'user':User.objects.filter(username=req.user).values().first()}
     data['post']=User.objects.all()
-    data['new_post']=Post.objects.all()
+    data['new_post']=Post.objects.order_by("-id")
     return render(req,"index.html",data)
 
-@login_required(redirect_field_name="login")
-def profile(req):
-    return render(req,"profile.html",{'user':User.objects.filter(username=req.user).values().first(),'acc':Account.objects.filter(user=req.user),'new_post':Post.objects.all()})
 
-@login_required(redirect_field_name="login")
+
+def send_friend_request(request, to_user_id):
+    to_user = User.objects.get(id=to_user_id)
+    FriendRequest.objects.create(from_user=request.user, to_user=to_user)
+    return redirect(home)
+
+def accept_friend_request(request, request_id):
+    friend_request = FriendRequest.objects.get(id=request_id)
+    friend_request.status = True
+    friend_request.save()
+    return redirect('friend_list')
+
+def reject_friend_request(request, request_id):
+    friend_request = FriendRequest.objects.get(id=request_id)
+    friend_request.delete()
+    return redirect('friend_list')
+
+
+@login_required()
+def profile(req):
+    data={}
+    data['user']=User.objects.filter(username=req.user).values().first()
+    data['acc']=Account.objects.filter(user=req.user)
+    data['new_post']=Post.objects.all()
+    sent_friend_requests = FriendRequest.objects.filter(from_user=req.user)
+    received_friend_requests = FriendRequest.objects.filter(to_user=req.user)
+    # data['to']=FriendRequest.objects.filter('sent_friend_requests': sent_friend_requests,'received_friend_requests': received_friend_requests,)  
+    data={'sent_friend_requests': sent_friend_requests,'received_friend_requests': received_friend_requests}
+
+    
+    return render(req,"profile.html",data)
+
+@login_required()
 def profile_pick(req):
     if req.method == "POST":
         P=Post()
@@ -29,8 +58,6 @@ def profile_pick(req):
         P.save()
         return redirect(home)
         
-       
-
 def loginUser(req):
     if req.method == "POST":
         username = req.POST['username']
@@ -71,4 +98,9 @@ def register(req):
 def logoutUser(req):
     logout(req)
     return redirect(loginUser)
+
+def findFri(req,id):
+    data={}
+    data['far']=Account.objects.get(pk=id)
+    return render(req,home,data)
 
