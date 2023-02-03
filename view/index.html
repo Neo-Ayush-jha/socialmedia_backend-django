@@ -29,18 +29,24 @@
                         <div class=" m-0 p-0"
                             style="background-image:url('http://picsum.photos/600');width:100%;display:flex;height: 100px;">
                         </div>
-                        <img src="https://toppng.com/uploads/preview/anonymous-freetoedit-anonymous-hacker-mask-11562984731flvabwesfh.png"
-                            class="border border-dark border-2 "
+                        {%if user.account.image %}
+                        <img src="{{user.account.image.url}}" class="border border-dark border-2 "
                             style="height: 80px;margin-left: 33%;border-radius: 50%;margin-top: -15%;" alt="Ayush"
                             title='neo'>
+
+                        {% else %}
+                        <img src="https://picsum.photos/100" class="border border-dark border-2 "
+                            style="height: 80px;margin-left: 33%;border-radius: 50%;margin-top: -15%;" alt="Ayush"
+                            title='neo'>
+                        {% endif %}
                         <h2 class="fs-4 text-center mt-3 text-light">{{user.first_name}} {{user.last_name}}</h2>
                         <p class="fs-5 text-light text-center">Mentor at {{user.email}}</p>
 
                         <p>
-                            <button class="btn btn-primary ms-5" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseWidthExample" aria-expanded="false"
+                            <button class="btn btn-primary " style="margin-left: 35%;" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false"
                                 aria-controls="collapseWidthExample">
-                                Change Profile Picture
+                                Add Post
                             </button>
                         </p>
                         <div style="min-height: 120px;">
@@ -55,8 +61,8 @@
                                             <input type="text" name="caption" placeholder="Caption"
                                                 class="form-control">
                                         </div>
-                                        <div class="mb-3">
-                                            <input type="submit" value="Change Profile Picture" class="btn btn-primary">
+                                        <div class="mb-3 mx-auto text-center">
+                                            <input type="submit" value="App Post" class="btn btn-success">
                                         </div>
                                     </form>
                                 </div>
@@ -72,45 +78,33 @@
                                 <div class="col-12 mx-0 bg-light px-3 py-3 rounded">
                                     <div class="row ">
                                         <div class="col-1 ">
-                                            <img src="https://toppng.com/uploads/preview/anonymous-freetoedit-anonymous-hacker-mask-11562984731flvabwesfh.png"
-                                                height="50px" alt="asd"
+                                            <img src="{{user.account.image.url}}" height="50px" alt="asd"
                                                 class="border border-secondary  border-3 rounded-circle ">
                                         </div>
                                         <div class="col-10">
-                                            <form action="" method="post">
+                                            <form enctype="multipart/form-data" method="post"
+                                                action="{%url 'changeProfile' %}">
                                                 <textarea name="caption" id="" cols="3" rows="5"
                                                     class="form-control ms-3"
                                                     placeholder="{{user.first_name}} whats in your Mind?"></textarea>
-                                                <div class="mt-2">
-                                                    <button type="button" class="btn "
-                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;"><i
-                                                            class="bi text-danger bi-image"></i>Photo</button>
-                                                    <button type="button" class="btn "
-                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;"><i
-                                                            class="bi bi-camera-reels-fill text-primary"></i>
-                                                        Video</button>
-                                                    <button type="button" class="btn "
-                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;"><i
-                                                            class="bi bi-calendar-event-fill text-danger"></i>
-                                                        Event</button>
-                                                    <button type="button" class="btn  me-2"
-                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;"><i
-                                                            class="bi bi-emoji-smile-fill text-warning"></i> Feeling
-                                                        /Activity</button>
-                                                    <input type="submit" value="post"
-                                                        class="btn btn-success text-dark ms-4"
-                                                        style="font-size:small;background-color:#ddd; font-family: Handlee, cursive;">
+                                                <div class="row mt-2">
+                                                    <div class="col-8">
+                                                        <input type="file" name="image" placeholder="add post"
+                                                            id="upload" class="form-control">
+                                                    </div>
+                                                    <div class="col-4 ">
+                                                        <input type="submit" value="post"
+                                                            class="btn btn-success text-dark">
+                                                    </div>
                                                 </div>
                                             </form>
-                                            <!-- <span><textarea type="text" class="form-control border border-0"
-                                                    placeholder="Whats in your Mind?"></textarea></span> -->
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <div class="row mt-3 px-0">
+                            <div class="row mt-4 px-0">
                                 {% comment %}
                                 ---------------------------------------------------------POST---------------------------------------------------------
                                 {% endcomment %}
@@ -126,8 +120,7 @@
                                                 <p></p>
                                                 <div class="col-10">
                                                     <span class="text-light text-small mx-0 px-0"><img
-                                                            src="https://toppng.com/uploads/preview/anonymous-freetoedit-anonymous-hacker-mask-11562984731flvabwesfh.png"
-                                                            height="33px" alt="asd"
+                                                            src="{{acc.image.url}}" height="33px" alt="asd"
                                                             class="border  ms-0 me-1 border-2 rounded-circle"
                                                             style="padding:1px;border-color:#25a3b7">
                                                         <strong
@@ -198,19 +191,27 @@
                     </div>
                 </div>
                 <div class="col-3  mx-0 mt-2 rounded bg-dark">
-                    {%for acc in post%}
+                    {%for qa in account%}
                     <a href="" style="text-decoration: none;">
                         <div class="row mt-5 px-2">
                             <div class="col-12   mx-0 my-2 px-0 ">
                                 <span class="text-light text-small mx-0 px-0">
-                                    <img src="https://toppng.com/uploads/preview/anonymous-freetoedit-anonymous-hacker-mask-11562984731flvabwesfh.png"
-                                        height="50px" alt="asd"
-                                        class="border  border-dark me-1 border-3 rounded-circle " style="padding:1px;">
-                                    <span style="font-family: Handlee, cursive;">{{acc.username}}</span>
+                                    {%if qa.image %}
+                                    <img src="{{qa.image.url}}"  alt="asd"
+                                        class="border  border-dark border-3  " style="height: 50px;border-radius: 100%;">
+                                    <span style="font-family: Handlee, cursive;">{{qa.user.username}}</span>
+
+                                    {% else %}
+                                    <img src="https://picsum.photos/100" class="border border-dark border-2 "
+                                        style="height: 50px;border-radius: 50%;"
+                                        alt="Ayush" title='neo'>
+                                    <span style="font-family: Handlee, cursive;">{{qa.username}}</span>
+                                    {% endif %}
+
                                 </span>
 
-                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <a href="{%url 'send_friend_request' acc.id%}" class="fw-bold "
+                                <button type="button" class="btn">
+                                    <a href="{%url 'send_friend_request' qa.id%}" class="fw-bold "
                                         style="text-decoration: none;color: #446c73;font-family: Handlee, cursive;"><i
                                             class="bi bi-plus-circle-fill fs-3 "></i></a>
                                 </button>

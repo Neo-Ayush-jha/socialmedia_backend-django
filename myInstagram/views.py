@@ -9,9 +9,9 @@ def singup(req):
 @login_required()
 def home(req):
     data={}
-    data['account']=Account.objects.all()
     # {'user':User.objects.filter(username=req.user).values().first()}
     data['post']=User.objects.all()
+    data['account']=Account.objects.exclude(user=req.user)
     data['new_post']=Post.objects.order_by("-id")
     return render(req,"index.html",data)
 
@@ -38,7 +38,7 @@ def reject_friend_request(request, request_id):
 def profile(req):
     data={}
     data['user']=User.objects.filter(username=req.user).values().first()
-    data['acc']=Account.objects.filter(user=req.user)
+    data['acc']=Account.objects.exclude(user=req.user)
     data['new_post']=Post.objects.all()
     sent_friend_requests = FriendRequest.objects.filter(from_user=req.user)
     received_friend_requests = FriendRequest.objects.filter(to_user=req.user)
