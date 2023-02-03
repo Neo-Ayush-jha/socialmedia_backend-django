@@ -42,6 +42,11 @@ def profile(req):
     data['new_post']=Post.objects.all()
     sent_friend_requests = FriendRequest.objects.filter(from_user=req.user)
     received_friend_requests = FriendRequest.objects.filter(to_user=req.user)
+    data['request_count']=FriendRequest.objects.count()
+    
+    friend_requests_sent = FriendRequest.objects.filter(to_user=req.user).count()
+    data = {'friend_requests_sent': friend_requests_sent}
+
     # data['to']=FriendRequest.objects.filter('sent_friend_requests': sent_friend_requests,'received_friend_requests': received_friend_requests,)  
     data={'sent_friend_requests': sent_friend_requests,'received_friend_requests': received_friend_requests}
 

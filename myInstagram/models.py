@@ -30,3 +30,6 @@ class FriendRequest(models.Model):
     status = models.BooleanField(default=False)
     def __str__(self):
         return self.from_user.username
+
+def count_sent_friend_requests(user):
+    return FriendRequest.objects.filter(sender=user).count()

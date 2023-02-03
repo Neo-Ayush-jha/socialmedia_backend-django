@@ -28,7 +28,7 @@
     />
   </head>
 
-  <body style="background-color: #065778">
+  <body style="background-color: #ddd;font-family: Handlee, cursive;font-weight: 900;">
     {% include 'profile_nav.html' %}
     <div class="container-flex justify-between">
       <div class="container">
@@ -52,13 +52,13 @@
                   />
                   
                 </div>
-                <div class="col-8 text-light mx-0 px-0">
+                <div class="col-8 text-dark mx-0 px-0">
                   <div class="row px-0 mt-3">
                     <div class="col-4 px-0">
-                      <h3>{{user.username}}</h3>
+                      <h3 style="font-family: Handlee, cursive;font-weight: 900;">{{user.username}}</h3>
                     </div>
                     <div class="col-3 mx-3 px-0">
-                      <a href="" class="btn btn-light text-dark"
+                      <a href="" class="btn btn-light text-dark" style="font-family: Handlee, cursive;font-weight: 900;"
                         >Edit profile</a
                       >
                       <!-- <button class="form-control" style="width:150px">
@@ -72,13 +72,13 @@
                   </div>
                   <div class="row px-0 mt-2">
                     <div class="col-4 px-0">
-                      <h3>43 <span class="ms-1 fs-5">posts</span></h3>
+                      <h3 style="font-family: Handlee, cursive;font-weight: 900;">43 <span class="ms-1 fs-5">posts</span></h3>
                     </div>
                     <div class="col-4 px-0">
-                      <h3>115 <span class="ms-1 fs-5">followers</span></h3>
+                      <h3 style="font-family: Handlee, cursive;font-weight: 900;">{{friend_requests_sent}} <span class="ms-1 fs-5">followers</span></h3>
                     </div>
                     <div class="col-4 px-0">
-                      <h3>170 <span class="ms-1 fs-5">following</span></h3>
+                      <h3 style="font-family: Handlee, cursive;font-weight: 900;">170 <span class="ms-1 fs-5">following</span></h3>
                     </div>
                   </div>
                   <div class="row px-0 mt-2">
@@ -105,7 +105,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#jaan leva</span>
+                  <span class="text-dark">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -114,7 +114,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#jaan leva</span>
+                  <span class="text-dark">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -123,7 +123,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#jaan leva</span>
+                  <span class="text-dark">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -132,7 +132,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#jaan leva</span>
+                  <span class="text-dark">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -141,7 +141,7 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#jaan leva</span>
+                  <span class="text-dark">#jaan leva</span>
                 </div>
                 <div class="col-2 text-center">
                   <img
@@ -150,29 +150,29 @@
                     alt="asd"
                     class="border border-dark p-1 rounded-circle mx-3"
                   />
-                  <span class="text-light">#jaan leva</span>
+                  <span class="text-dark">#jaan leva</span>
                 </div>
               </div>
-              <hr class="text-light mb-0" />
+              <hr class="text-dark mb-0" />
               <div class="row">
                 <div class="col-12 my-1 mx-auto">
                   <nav class="navbar navbar-dark">
-                    <a class="navbar-brand mx-0 text-truncate" href="#"
+                    <a class="navbar-brand mx-0 text-truncate text-dark" href="#"
                       ><span><i class="bi bi-card-list mx-2"></i></span>POST</a
                     >
-                    <a class="navbar-brand mx-0 text-truncate" href="#"
+                    <a class="navbar-brand mx-0 text-truncate text-dark" href="#"
                       ><span><i class="bi bi-play-btn mx-2"></i></span>REELS</a
                     >
-                    <a class="navbar-brand mx-0 text-truncate" href="#"
+                    <a class="navbar-brand mx-0 text-truncate text-dark" href="#"
                       ><span><i class="bi bi-bookmark mx-2"></i></span>SAVE</a
                     >
-                    <a class="navbar-brand mx-0 text-truncate" href="#"
+                    <a class="navbar-brand mx-0 text-truncate text-dark" href="#"
                       ><span><i class="bi bi-file-zip mx-2"></i></span>TAGGES</a
                     >
                   </nav>
                 </div>
               </div>
-              <hr class="text-light m-0" />
+              <hr class="text-dark m-0" />
               <div class="row">
                 {%for ac in new_post%}
                 <div class="col mx-auto">
