@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import *
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 def singup(req):
     return render(req,'singup.html')
 
@@ -39,16 +40,15 @@ def profile(req):
     data={}
     data['user']=User.objects.filter(username=req.user).values().first()
     data['acc']=Account.objects.exclude(user=req.user)
-    data['new_post']=Post.objects.all()
     sent_friend_requests = FriendRequest.objects.filter(from_user=req.user)
     received_friend_requests = FriendRequest.objects.filter(to_user=req.user)
     data['request_count']=FriendRequest.objects.count()
     
-    friend_requests_sent = FriendRequest.objects.filter(to_user=req.user).count()
-    data = {'friend_requests_sent': friend_requests_sent}
+    data['friend_requests_sent'] = FriendRequest.objects.filter(from_user=req.user).count()
 
     # data['to']=FriendRequest.objects.filter('sent_friend_requests': sent_friend_requests,'received_friend_requests': received_friend_requests,)  
     data={'sent_friend_requests': sent_friend_requests,'received_friend_requests': received_friend_requests}
+    data['new_post']=Post.objects.filter(post_by=req.user)
 
     
     return render(req,"profile.html",data)
@@ -58,8 +58,13 @@ def profile_pick(req):
     if req.method == "POST":
         P=Post()
         P.post_by=User.objects.get(username=req.user)
-        P.image=req.FILES.get('image')
         P.caption=req.POST.get("caption")
+        if req.FILES:
+            file = req.FILES['image']
+            fs= FileSystemStorage()
+            filename = fs.save(file.name,file)
+            upload_file_url = fs.url(filename)
+            P.image=filename
         P.save()
         return redirect(home)
         
@@ -109,3 +114,21 @@ def findFri(req,id):
     data['far']=Account.objects.get(pk=id)
     return render(req,home,data)
 
+def uploadDp(r):
+    if r.method == "POST":
+        user = Account.objects.get(user=r.user)
+        file = r.FILES['image']
+        fs = FileSystemStorage()
+        filename = fs.save(file.name,file)
+        upload_file_url = fs.url(filename)
+        user.dp = filename
+        user.save()
+        return redirect(home)
+@login_required()
+def findFriend(req):
+    data={}
+    # {'user':User.objects.filter(username=req.user).values().first()}
+    data['post']=User.objects.all()
+    data['account']=Account.objects.exclude(user=req.user)
+    data['new_post']=Post.objects.order_by("-id")
+    return render(req,"fri.html",data)

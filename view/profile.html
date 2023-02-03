@@ -1,210 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FaceMark</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"
-    ></script>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
-    />
-  </head>
 
-  <body style="background-color: #ddd;font-family: Handlee, cursive;font-weight: 900;">
-    {% include 'profile_nav.html' %}
-    <div class="container-flex justify-between">
-      <div class="container">
-        <div class="row">
-          <div class="col-3">
-            <div class="card  text-center text-secondary mt-2" style="background-color: #065778;">
-              <div class="card-body border p-0 m-1 border-dark self-center " style="text-shadow:2.3px 2.3px #17a2b8;font-size: 40px; font-family: Handlee, cursive;">Facemask
-              </div>
-          </div> 
-            {% include 'side.html' %}</div>
-          <div class="col-9 px-5 my-4">
-            <div class="container rounded">
-              <div class="row">
-                <div class="col-4 mt-4 mx-0 pe-0">
-                  
-                  <img
-                    src="{{user.account.image.url}}"
-                    height="180px" style="width:200px;"
-                    class="rounded-circle border border-light p-1"
-                    alt=""
-                  />
-                  
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neo World</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #f1f1f1;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #111;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+    }
+
+    .openbtn:hover {
+      background-color: #444;
+    }
+
+    .modal-backdrop.show {
+      opacity: .5;
+      width: 10px;
+    }
+
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidebar {
+        padding-top: 15px;
+      }
+
+      .sidebar a {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body class="mx-auto text-center" style="background-color: #ddd;font-family: Handlee, cursive;font-weight: 900;">
+  {% include 'profile_nav.html' %}
+  <div class="container-flex justify-between">
+    <div class="container">
+      <div class="row mx-auto">
+        <div class="col-xl-3 col-sm-12 ">
+          <!-- --------------------------------------------------------------------------------- -->
+          <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+            {% include 'side.html' %}
+          </div>
+          <div id="main">
+            <button class="openbtn" onclick="openNav()">☰ Open Manu</button>
+          </div>
+        </div>
+        <!-- --------------------------------------------------------------------------------- -->
+      </div>
+      <div class="col-xl-12 px-5 my-4 border border-2 rounded border-dark">
+        <div class="container rounded">
+          <div class="row">
+            <div class="col-xl-4 col-sm-6 mt-4 mx-0 pe-0">
+              <img src="{{user.account.image.url}}" height="200px" style="width:200px;"
+                class="rounded-circle border border-light p-1" alt="" />
+
+            </div>
+            <div class="col-xl-8 col-sm-12 text-dark mx-0 px-0">
+              <div class="row px-0 mt-3">
+                <div class="col-xl-4 col-sm-5 px-0">
+                  <h3 style="font-family: Handlee, cursive;font-weight: 900;">{{user.username}}</h3>
                 </div>
-                <div class="col-8 text-dark mx-0 px-0">
-                  <div class="row px-0 mt-3">
-                    <div class="col-4 px-0">
-                      <h3 style="font-family: Handlee, cursive;font-weight: 900;">{{user.username}}</h3>
-                    </div>
-                    <div class="col-3 mx-3 px-0">
-                      <a href="" class="btn btn-light text-dark" style="font-family: Handlee, cursive;font-weight: 900;"
-                        >Edit profile</a
-                      >
-                      <!-- <button class="form-control" style="width:150px">
+                <div class="col-xl-3 col-sm-3 mx-3 px-0">
+                  <a href="" class="btn btn-light text-dark"
+                    style="font-family: Handlee, cursive;font-weight: 900;">Edit profile</a>
+
+                  <!-- <button class="form-control" style="width:150px">
 
                                             <h5 class="px-0 mx-0">Edit profile</h5>
                                         </button> -->
-                    </div>
-                    <div class="col-2 px-0">
-                      <i class="bi bi-gear me-4 fs-3"></i>
-                    </div>
-                  </div>
-                  <div class="row px-0 mt-2">
-                    <div class="col-4 px-0">
-                      <h3 style="font-family: Handlee, cursive;font-weight: 900;">43 <span class="ms-1 fs-5">posts</span></h3>
-                    </div>
-                    <div class="col-4 px-0">
-                      <h3 style="font-family: Handlee, cursive;font-weight: 900;">{{friend_requests_sent}} <span class="ms-1 fs-5">followers</span></h3>
-                    </div>
-                    <div class="col-4 px-0">
-                      <h3 style="font-family: Handlee, cursive;font-weight: 900;">170 <span class="ms-1 fs-5">following</span></h3>
-                    </div>
-                  </div>
-                  <div class="row px-0 mt-2">
-                    <div class="col-4 px-0">
-                      <p class="fs-4">{{user.first_name}} {{user.last_name}}</p>
-                    </div>
-                  </div>
-                  <div class="row px-0">
-                    <div class="col px-0">
-                      <p>
-                        💞Krishna loves your smile, so smile for him💖 <br />
-                        💖श्री कृष्ण कहते हैं प्रतीक्षा करना शुद्ध प्रेम की
-                        निशानी है।❣️
-                      </p>
-                    </div>
-                  </div>
+                </div>
+                <div class="col-xl-2 col-sm-1 d-none d-lg-block  px-0">
+                  <i class="bi bi-gear me-4 fs-3"></i>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-2 text-center">
-                  <img
-                    src="http://picsum.photos/500"
-                    height="80px"
-                    alt="asd"
-                    class="border border-dark p-1 rounded-circle mx-3"
-                  />
-                  <span class="text-dark">#jaan leva</span>
+              <div class="row px-0 mt-2">
+                <div class="col-xl-4 col-sm-6 px-0">
+                  <h3 style="font-family: Handlee, cursive;font-weight: 900;">43 <span class="ms-1 fs-5">posts</span>
+                  </h3>
                 </div>
-                <div class="col-2 text-center">
-                  <img
-                    src="https://tse2.mm.bing.net/th?id=OIP.phUnG1dKgtQw8SEYZfBZwQHaHl&pid=Api&P=0"
-                    height="80px"
-                    alt="asd"
-                    class="border border-dark p-1 rounded-circle mx-3"
-                  />
-                  <span class="text-dark">#jaan leva</span>
+                <div class="col-xl-4 col-sm-6 px-0">
+                  <h3 style="font-family: Handlee, cursive;font-weight: 900;">150 <span class="ms-1 fs-5">followers</span></h3>
+                  {% comment %} <h3 style="font-family: Handlee, cursive;font-weight: 900;">{{friend_requests_sent}} <span class="ms-1 fs-5">followers</span></h3> {% endcomment %}
                 </div>
-                <div class="col-2 text-center">
-                  <img
-                    src="http://picsum.photos/400"
-                    height="80px"
-                    alt="asd"
-                    class="border border-dark p-1 rounded-circle mx-3"
-                  />
-                  <span class="text-dark">#jaan leva</span>
-                </div>
-                <div class="col-2 text-center">
-                  <img
-                    src="http://picsum.photos/900"
-                    height="80px"
-                    alt="asd"
-                    class="border border-dark p-1 rounded-circle mx-3"
-                  />
-                  <span class="text-dark">#jaan leva</span>
-                </div>
-                <div class="col-2 text-center">
-                  <img
-                    src="http://picsum.photos/600"
-                    height="80px"
-                    alt="asd"
-                    class="border border-dark p-1 rounded-circle mx-3"
-                  />
-                  <span class="text-dark">#jaan leva</span>
-                </div>
-                <div class="col-2 text-center">
-                  <img
-                    src="http://picsum.photos/100"
-                    height="80px"
-                    alt="asd"
-                    class="border border-dark p-1 rounded-circle mx-3"
-                  />
-                  <span class="text-dark">#jaan leva</span>
+                <div class="col-xl-4 col-sm-6 px-0">
+                  <h3 style="font-family: Handlee, cursive;font-weight: 900;">170 <span
+                      class="ms-1 fs-5">following</span></h3>
                 </div>
               </div>
-              <hr class="text-dark mb-0" />
-              <div class="row">
-                <div class="col-12 my-1 mx-auto">
-                  <nav class="navbar navbar-dark">
-                    <a class="navbar-brand mx-0 text-truncate text-dark" href="#"
-                      ><span><i class="bi bi-card-list mx-2"></i></span>POST</a
-                    >
-                    <a class="navbar-brand mx-0 text-truncate text-dark" href="#"
-                      ><span><i class="bi bi-play-btn mx-2"></i></span>REELS</a
-                    >
-                    <a class="navbar-brand mx-0 text-truncate text-dark" href="#"
-                      ><span><i class="bi bi-bookmark mx-2"></i></span>SAVE</a
-                    >
-                    <a class="navbar-brand mx-0 text-truncate text-dark" href="#"
-                      ><span><i class="bi bi-file-zip mx-2"></i></span>TAGGES</a
-                    >
-                  </nav>
+              <div class="row px-0 mt-2">
+                <div class="col-xl-4 col-sm-10 px-0">
+                  <p class="fs-4">{{user.first_name}} {{user.last_name}}</p>
                 </div>
               </div>
-              <hr class="text-dark m-0" />
-              <div class="row">
-                {%for ac in new_post%}
-                <div class="col mx-auto">
-                  <a href="">
-                    <img
-                      src="{{ac.image.url}}"
-                      height="280px"
-                      style="width: 270px !important"
-                      class="p-1"
-                      alt="" 
-                    />
-                  </a>
+              <div class="row px-0">
+                <div class="col px-0">
+                  <p>
+                    💞Krishna loves your smile, so smile for him💖 <br />
+                    💖श्री कृष्ण कहते हैं प्रतीक्षा करना शुद्ध प्रेम की
+                    निशानी है।❣️
+                  </p>
                 </div>
-                {%endfor%} 
-                {% comment %} {%for newPost in new_post%}
-                <div class="col mx-auto">
-                    <a href="">
-                  <img
-                    src="{{newPost.image.url}}"
-                    height="280px"
-                      style="width: 270px !important"
-                      class="p-1"
-                      alt=""
-                  />
-                </a>
-            </div>
-                {%endfor%} {% endcomment %}
               </div>
             </div>
+          </div>
+          <div class="row d-row">
+            <div class="col-xl-2 col-sm-5 mx-sm-0 px-sm-0 text-center">
+              <img src="http://picsum.photos/500" height="80px" alt="asd"
+                class="border border-dark p-1 rounded-circle mx-3" />
+              <span class="text-dark">#jaan leva</span>
+            </div>
+            <div class="col-xl-2 col-sm-3 mx-sm-0 px-sm-0 text-center">
+              <img src="https://tse2.mm.bing.net/th?id=OIP.phUnG1dKgtQw8SEYZfBZwQHaHl&pid=Api&P=0" height="80px"
+                alt="asd" class="border border-dark p-1 rounded-circle mx-3" />
+              <span class="text-dark">#jaan leva</span>
+            </div>
+            <div class="col-xl-2 col-sm-3 d-none d-lg-block  text-center">
+              <img src="http://picsum.photos/400" height="80px" alt="asd"
+                class="border border-dark p-1 rounded-circle mx-3" />
+              <span class="text-dark">#jaan leva</span>
+            </div>
+            <div class="col-xl-2 col-sm-3 d-none d-lg-block  text-center">
+              <img src="http://picsum.photos/900" height="80px" alt="asd"
+                class="border border-dark p-1 rounded-circle mx-3" />
+              <span class="text-dark">#jaan leva</span>
+            </div>
+            <div class="col-xl-2 col-sm-3 d-none d-lg-block  text-center">
+              <img src="http://picsum.photos/600" height="80px" alt="asd"
+                class="border border-dark p-1 rounded-circle mx-3" />
+              <span class="text-dark">#jaan leva</span>
+            </div>
+            <div class="col-xl-2 col-sm-3 d-none d-lg-block  text-center">
+              <img src="http://picsum.photos/100" height="80px" alt="asd"
+                class="border border-dark p-1 rounded-circle mx-3" />
+              <span class="text-dark">#jaan leva</span>
+            </div>
+          </div>
+          <hr class="text-dark mb-0" />
+          <div class="row">
+            <div class="col-12 my-1 mx-auto">
+              <nav class="navbar navbar-dark">
+                <a class="navbar-brand mx-0 text-truncate text-dark" href="#"><span><i
+                      class="bi bi-card-list mx-2"></i></span>POST</a>
+                <a class="navbar-brand mx-0 text-truncate text-dark" href="#"><span><i
+                      class="bi bi-play-btn mx-2"></i></span>REELS</a>
+                <a class="navbar-brand mx-0 text-truncate text-dark" href="#"><span><i
+                      class="bi bi-bookmark mx-2"></i></span>SAVE</a>
+                <a class="navbar-brand mx-0 text-truncate text-dark" href="#"><span><i
+                      class="bi bi-file-zip mx-2"></i></span>TAGGES</a>
+              </nav>
+            </div>
+          </div>
+          <hr class="text-dark m-0" />
+          <div class="row">
+            {%for ac in new_post%}
+            <div class="col-xl-3 col-sm-12 mx-auto text-center">
+              <a href="">
+                <img src="{{ac.image.url}}" height="250px" style="width: 270px !important" class="p-1 border border-1 rounded border-dark my-1 ms-1" alt="" />
+              </a>
+            </div>
+            {%endfor%}
+            {% comment %} {%for newPost in new_post%}
+            <div class="col-xl-3 col-sm-12 mx-auto">
+              <a href="">
+                <img src="{{newPost.image.url}}" height="280px" style="width: 270px !important" class="p-1" alt="" />
+              </a>
+            </div>
+            {%endfor%} {% endcomment %}
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+  </div>
+  <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
+  {% include 'footer.html' %}
+
+</body>
+
 </html>

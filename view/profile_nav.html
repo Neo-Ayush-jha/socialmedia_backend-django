@@ -4,25 +4,34 @@
             style="font-size: 40px; font-family: Handlee, cursive;">
             <img src="https://toppng.com/uploads/preview/anonymous-freetoedit-anonymous-hacker-mask-11562984731flvabwesfh.png"
                 class="h-6 mx-3 border border-2 border-dark rounded" height="70px" alt="Flowbite Logo" />
-            <span class="self-center text-xl " style="text-shadow:2.3px 2.3px #17a2b8">Facemask</span>
+            <span class="self-center text-xl " style="text-shadow:2.3px 2.3px #17a2b8">NeoWorld</span>
         </a>
-        <div class="collapse navbar-collapse justify-between ps-5 " style="text-align: right;margin:left;">
+        <button class="navbar-toggler text-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-secondary"></span>
+          </button>
+        <div class="collapse navbar-collapse justify-between ps-5 " id="navbarSupportedContent" style="text-align: right;margin:left;">
             <div class="navbar-nav font-weight-bold ms-auto py-0">
                 <a href="" class="nav-item nav-link text-light active"></a>
-                <button type="button" class="btn  font-weight-bold text-white m-0 p-0 position-relative"
+                <form class="d-flex" method="get" role="search">
+                    {%csrf_token%}
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                {% comment %} <button type="button" class="btn  font-weight-bold text-white m-0 p-0 position-relative"
                     style="background-color: #17a2b8;font-family: Handlee, cursive;">
                     unread messages
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         99+
                         <span class="visually-hidden">unread messages</span>
                     </span>
-                </button>
+                </button> {% endcomment %}
                 </a>
                 <a href="{%url 'home'%}" class="nav-item nav-link text-light active">Home</a>
+                <a href="{%url 'findFriends' %}" class="nav-item nav-link text-light active">Find friend</a>
                 <a href="" class="nav-item nav-link text-light active">Setting</a>
                 <a href="{%url 'profile'%}" class="nav-item nav-link text-light active"><span class=" ">
                     {%if user.account.image %}
-            <img src="{{user.account.image.url}}" class="border border-dark border-2" style="height: 35px;border-radius: 50%;" alt="Ayush"
+            <img src="{{user.account.image.url}}" class="border border-dark border-2" style="height: 35px;width:35px;border-radius: 50%;" alt="Ayush"
             title='neo' />
             {% else %}
                 <img src="https://picsum.photos/100" class="border border-dark border-2" style="height: 35px;border-radius: 50%;" alt="Ayush"
