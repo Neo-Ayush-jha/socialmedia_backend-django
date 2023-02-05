@@ -9,12 +9,16 @@
                         class="bi bi-calendar3-range me-4 fs-3"></i>Reels</a>
         <a href="#" class="list-group-item   text-dark fs-5" style="background-color: #ccc;"><i
                         class="bi bi-chat-text me-4 fs-3"></i>Message</a>
+
         <a href="#" class="list-group-item   text-dark fs-5" style="background-color: #ccc;"><i
                         class="bi bi-heart me-4 fs-3"></i>Notification</a>
-                        <button type="button" class="btn px-0 my-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <a href="#" class="list-group-item   text-dark fs-5" style="background-color: #ccc;font-family: Handlee, cursive;font-weight: 900;"><i
-                                                class="bi bi-plus-square me-5 fs-3"></i>Friend request</a>
-                        </button>
+        <button type="button" class="btn px-0 my-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <a href="#" class="list-group-item   text-dark fs-5"
+                        style="background-color: #ccc;font-family: Handlee, cursive;font-weight: 900;"><i
+                                class="bi bi-plus-square me-5 fs-3"></i>Friend request</a>
+        </button>
+        <a href="{%url 'deleteAccount' user.id%}" class="list-group-item   text-dark fs-5"
+                style="background-color: #ccc;"><i class="bi bi-trash me-4 fs-3"></i>Delete Account</a>
         <a href="" class="list-group-item   text-light fs-5 bg-dark" style="background-color: #ccc;"><i
                         class="bi bi-person-circle me-4 fs-3"></i>Profile</a>
 </div>
@@ -31,39 +35,65 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" w>
                                 <div class="row g-0 bg-body-secondary position-relative">
                                         <div class="row">
                                                 <div class="col-xl-6 col-sm-10 mx-auto">
                                                         <div class="card">
-                                                                <h2 class="fs-4 text-danger text-center">Sent Friend Requests</h2>
+                                                                <h2 class="fs-4 text-danger text-center">Sent Friend
+                                                                        Requests</h2>
                                                                 <div class="card-body">
+                                                                        {% comment %}
+                                                                        {%if sent_friend_requests.to_user%}
+                                                                        {% endcomment %}
                                                                         <ol class="list-group list-group-numbered">
                                                                                 {% for friend_request in sent_friend_requests %}
-                                                                                <li class="list-group-item fs-4">{{ friend_request.to_user }}</li>
+                                                                                <li class="list-group-item fs-4">
+                                                                                        {{ friend_request.to_user }} <a
+                                                                                                href="{%url 'accept_friend_request' user.id%}"
+                                                                                                class="fw-bold "
+                                                                                                style="text-decoration: none;color: #446c73;font-family: Handlee, cursive;"><i
+                                                                                                        class="bi bi-check fs-3 "></i></a>
+                                                                                </li>
                                                                                 {% endfor %}
                                                                         </ol>
+                                                                        {% comment %} {%else%}
+                                                                        <ol class="list-group list-group-numbered">
+                                                                                <li class="list-group-item fs-4">no any
+                                                                                        request</li>
+                                                                        </ol>
+                                                                        {% endif %} {% endcomment %}
                                                                 </div>
-                
+
                                                         </div>
                                                 </div>
                                                 <div class="col-xl-6 col-sm-10 mx-auto mt-sm-3">
                                                         <div class="card">
-                                                                <h2 class="fs-4 text-success text-center border border-2">Received Friend Requests</h2>
-                                                                
+                                                                <h2
+                                                                        class="fs-4 text-success text-center border border-2">
+                                                                        Received Friend Requests</h2>
+
                                                                 <div class="card-body">
                                                                         <ol class="list-group list-group-numbered">
                                                                                 {% for friend_request in received_friend_requests %}
-                                                                                <li class="list-group-item fs-4">{{ friend_request.from_user.first_name }} {{ friend_request.from_user.last_name }}</li>
+                                                                                <li class="list-group-item fs-4">
+                                                                                        {{ friend_request.from_user.first_name }}
+                                                                                        {{ friend_request.from_user.last_name }}
+                                                                                        <a href="{%url 'accept_friend_request' user.id%}"
+                                                                                                class="fw-bold "
+                                                                                                style="text-decoration: none;color: #446c73;font-family: Handlee, cursive;"><i
+                                                                                                        class="bi bi-check fs-3 "></i></a>
+                                                                                </li>
                                                                                 {% endfor %}
+
                                                                         </ol>
                                                                 </div>
-                
+
                                                         </div>
                                                 </div>
                                         </div>
-                                        
-                                        
+
+
                                 </div>
                         </div>
                         <div class="modal-footer">

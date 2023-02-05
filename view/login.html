@@ -20,22 +20,22 @@
     <div class="container-flex justify-between " style=" height:90vh; background-image: url('{%static 'loginImg.svg' %}');background-repeat:no-repeat;">
         <div class="container">
             <div class="row mx-auto ">
-                <div class="col-8 p-5 text-dark">
-                    <h1 style="margin-top: 200px;font-size: 80px; font-family: Handlee, cursive;font-weight: bolder;color: black;text-shadow:2.3px 2.3px #17a2b8">Welcome in Facemask</h1>
-                    <p class="fs-3" style="font-family: Handlee, cursive;font-size: 2.75rem!important;font-weight: 300;color: black;text-shadow:2.3px 2.3px #17a2b8">Connecting Together</p>
+                <div class="col-xl-8 col-sm-2 p-xl-5 text-dark">
+                    <h1 class="lh-sm" style="margin-top: 200px;font-size: 80px; font-family: Handlee, cursive;font-weight: bolder;color: black;text-shadow:2.3px 2.3px #17a2b8">Welcome in NeoWorld</h1>
+                    <p class="fs-xl-3 fs-sm-6" style="font-family: Handlee, cursive;font-size: 2.75rem!important;font-weight: 300;color: black;text-shadow:2.3px 2.3px #17a2b8">Connecting Together</p>
                 </div>
                 <div class="col-md-4 col-sm-6 mx-auto" style="margin-top:10%">
-                    <div class="card p-2" style="border:6px solid #17a2b8;">
+                    <div class="card p-xl-2" style="border:6px solid #17a2b8;">
                         <div class="card-header self-center fs-1 " style="text-shadow:2.3px 2.3px #17a2b8" style="font-family: Handlee, cursive;">Login your Account</div>
                         <div class="card-body" >
                             <form action="{% url 'login' %}" method="post" >
                                 {% csrf_token %}
                                 <div class="mb-3  mx-auto">
-                                    <input type="text" name="username" placeholder="username" class="form-control">
+                                    <input type="text" name="username" required placeholder="username" class="form-control">
                                 </div>
                                 
                                 <div class="mb-3 ">
-                                    <input type="password" name="password" placeholder="Enter Password" class="form-control my-2">
+                                    <input type="password" name="password" required placeholder="Enter Password" class="form-control my-2">
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit"  class="btn btn w-100 mt-0" style="color:#fff;border-color: #00394f;border-radius: 45px;background-color: #00394f;">Submit</button>

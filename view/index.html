@@ -42,36 +42,24 @@
                         {% endif %}
                         <h2 class="fs-4 text-center mt-3 text-light">{{user.first_name}} {{user.last_name}}</h2>
                         <p class="fs-5 text-light text-center">Mentor at {{user.email}}</p>
-                        <!-- <form action="{% url 'uploadDp' %}" method="post" enctype="multipart/form-data">
-                            {%csrf_token %}
-                            <label for="upload" class="bg-danger text-white px-2 py-1 mt-3 rounded">
-                                <input type="file" name="image" id="upload"  hidden onchange="this.form.submit();">
-                                <span>Upload Dp</span>
-                            </label>
-      
-                        </form> -->
                         <p>
-                            <button class="btn btn-primary " style="margin-left: 35%;" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false"
-                                aria-controls="collapseWidthExample">
-                                Add Post
-                            </button>
+                            <form enctype="multipart/form-data" method="post" action="{%url 'uploadDp' %}">
+                                {% csrf_token%}
+                                <label for="upload" style="margin-left:30%;">
+                                    <input type="file" name="image" id="upload" required hidden onchange="this.form.submit()">
+                                    <span class="btn btn-success border-2" >Change Dp</span>
+                                </label>
+                            </form>
                         </p>
                         <div style="min-height: 120px;">
                             <div class="collapse collapse-horizontal" id="collapseWidthExample">
                                 <div class="card card-body" style="width: 300px;">
-                                    <form enctype="multipart/form-data" method="post" action="{%url 'changeProfile' %}">
+                                    <form enctype="multipart/form-data" method="post" action="{%url 'uploadDp' %}">
                                         {% csrf_token%}
-                                        <div class="mb-3">
-                                            <input type="file" class="form-control" name="image">
-                                        </div>
-                                        <div class="mb-3">
-                                            <input type="text" name="caption" placeholder="Caption"
-                                                class="form-control">
-                                        </div>
-                                        <div class="mb-3 mx-auto text-center">
-                                            <input type="submit" value="App Post" class="btn btn-success">
-                                        </div>
+                                        <label for="upload">
+                                            <input type="file" name="image" id="upload" required hidden onchange="this.form.submit()">
+                                            <span class="btn btn-success border-2" style="margin-left:90%;">Change Dp</span>
+                                        </label>
                                     </form>
                                 </div>
                             </div>
@@ -93,20 +81,15 @@
                                         <div class="col-10">
                                             <form enctype="multipart/form-data" method="post"
                                                 action="{%url 'changeProfile' %}">
-                                                <textarea name="caption" id="" cols="3" rows="5"
-                                                    class="form-control ms-3"
-                                                    placeholder="{{user.first_name}} whats in your Mind?"></textarea>
+                                                <textarea name="caption" id="" cols="3" rows="5" class="form-control ms-3" required placeholder="{{user.first_name}} whats in your Mind?"></textarea>
                                                 <div class="row">
-                                                    <div class="col-8">
-                                                        <!-- <label for="upload" class="bg-danger text-white btn rounded">
-                                                            <input type="file" name="image" id="upload"  hidden >
-                                                            <span>Upload Dp</span>
-                                                        </label> -->
-                                                        <input type="file" name="image" id="" class="form-control w-50">
+                                                    <div class="col-xl-8 col-sm-2">
                                                     </div>
-                                                    <div class="col-4 ">
-                                                        <input type="submit" value="post"
-                                                            class="btn btn-success text-dark">
+                                                    <div class="col-xl-4 col-sm-6 mt-2">
+                                                        <label for="upload">
+                                                            <input type="file" name="image" id="upload" required hidden onchange="this.form.submit()">
+                                                            <span class="btn btn-success border-2" style="margin-left:90%;">Upload</span>
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </form>
@@ -131,6 +114,7 @@
                                             <div class="row">
                                                 <p></p>
                                                 <div class="col-10">
+                                                    
                                                     <span class="text-light text-small mx-0 px-0"><img
                                                             src="{{acc.image.url}}" height="38px" width="38px" alt="asd"
                                                             class="border  ms-0 me-1 border-2 rounded-circle"

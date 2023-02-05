@@ -132,3 +132,8 @@ def findFriend(req):
     data['account']=Account.objects.exclude(user=req.user)
     data['new_post']=Post.objects.order_by("-id")
     return render(req,"fri.html",data)
+@login_required()
+def deleteAccount(req):
+    user=User.objects.get(user=req.user)
+    user.delete()
+    return redirect(singup)

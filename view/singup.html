@@ -46,30 +46,30 @@
                                 {%csrf_token%}
                                 <div class="row">
                                     <div class="mb-3 col-md-6 col-sm-8 mx-auto">
-                                        <input type="text" name="fname" placeholder="First name" class="form-control">
+                                        <input required type="text" name="fname" placeholder="First name" class="form-control">
                                     </div>
                                     <div class="mb-3 col-md-6 col-sm-8 mx-auto">
-                                        <input type="text" name="lname" placeholder="Last name" class="form-control">
+                                        <input required type="text" name="lname" placeholder="Last name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="mb-3  mx-auto">
-                                    <input type="text" name="username" placeholder="username" class="form-control">
+                                    <input required type="text" name="username" placeholder="username" class="form-control">
                                 </div>
                                 <div class="mb-3  mx-auto">
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">@</span>
-                                        <input type="email" class="form-control" placeholder="email" name="email" aria-label="Username" aria-describedby="basic-addon1">
+                                    <div class="input required-group">
+                                        <span class="input required-group-text" id="basic-addon1">@</span>
+                                        <input required type="email" class="form-control" placeholder="email" name="email" aria-label="Username" aria-describedby="basic-addon1">
                                       </div>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="number" name="contact" placeholder="Contact" class="form-control">
+                                    <input required type="number" name="contact" placeholder="Contact" class="form-control">
                                 </div>
                                 <div class="row">
                                     <div class="mb-3 col-md-4 col-sm-6  rounded">
                                         <label for="" class="py-1">Date of Birth</label>
                                     </div>
                                     <div class="mb-3 col-md-8 col-sm-6">
-                                        <input type="date" name="dob"  class="form-control">
+                                        <input required type="date" name="dob"  class="form-control">
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -81,11 +81,11 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="file" class="form-control" name="image">
+                                    <input required type="file" class="form-control" name="image">
                                 </div>
                                 <div class="mb-3 ">
-                                    <input type="password" name="password" placeholder="Enter Password" class="form-control my-2">
-                                    <input type="password" name="cnf_password" placeholder="Confirm Password" class="form-control">
+                                    <input required type="password" name="password" placeholder="Enter Password" class="form-control my-2">
+                                    <input required type="password" name="cnf_password" placeholder="Confirm Password" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit"  class="btn btn w-100 mt-0" style="color:#fff;border-color: #00394f;border-radius: 45px;background-color: #00394f;">Submit</button>
